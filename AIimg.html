@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Explorer</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #e44d26;
+    }
+
+    .search-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    #searchInput {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      margin-bottom: 10px;
+      border: none;
+      border-bottom-left-radius: 20px;
+      border-top-left-radius: 20px;
+      border-bottom: 2px solid #4caf50; /* Green color */
+      background-color: #fff; /* Highlighted background color */
+      transition: border-bottom 0.3s;
+    }
+
+    #searchInput::placeholder {
+      color: #6c757d;
+    }
+
+    #searchInput:focus {
+      outline: none;
+      border-bottom: 2px solid #45a049; /* Darker green color on focus */
+    }
+
+    #searchButton, #loadMoreButton {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #e44d26;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    #searchButton:hover, #loadMoreButton:hover {
+      background-color: #d22800;
+    }
+
+    #imageContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    h1 {
+      color: #e44d26;
+    }
+
+    .guide-section {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .search-result-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .search-result-img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #noResultMessage, #noMoreResultsMessage {
+      color: #000;
+      margin-top: 20px;
+    }
+
+    #loadMoreButton {
+      display: none; /* Initially hide the Load More button */
+    }
+
+    @media only screen and (min-width: 600px) {
+      .search-container {
+        flex-direction: row;
+      }
+
+      #searchInput {
+        width: 60%;
+        margin-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Image Explorer</h1>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Enter keywords to explore images">
+    <button onclick="searchImages()" id="searchButton">Explore</button>
+  </div>
+
+  <div id="imageContainer"></div>
+  <div id="noResultMessage"></div>
+  <div id="noMoreResultsMessage"></div>
+  <button onclick="loadMoreImages()" id="loadMoreButton">Load More</button>
+
+  <div class="guide-section">
+    <h2>Discover the World with Image Explorer: Your Ultimate Visual Search Companion</h2>
+
+    <p>In the vast realm of the internet, where information flows in the form of images, having a tool that can seamlessly navigate and unveil a visual treasure trove is invaluable. Enter Image Explorer, a powerful and user-friendly tool designed to enhance your online exploration experience.</p>
+
+    <h3>Getting Started: How to Use Image Explorer</h3>
+    <ol>
+      <li><strong>Enter Keywords:</strong> In the search bar, input keywords related to the images you want to explore. Whether it's breathtaking landscapes, adorable animals, or cutting-edge technology, Image Explorer is your gateway to a vast collection.</li>
+      <li><strong>Click "Explore":</strong> Hit the "Explore" button, and watch as Image Explorer works its magic. The tool will fetch a curated selection of images based on your input.</li>
+      <li><strong>Enjoy the Visual Feast:</strong> Scroll through the results presented in an aesthetically pleasing grid. The responsive design ensures a seamless experience, whether you're on a desktop or mobile device.</li>
+      <li><strong>Load More for Endless Exploration:</strong> Want more? Click the "Load More" button to unveil additional images related to your search. Image Explorer adapts to your curiosity, providing an extensive visual library.</li>
+    </ol>
+
+    <h3>The Benefits of Image Explorer</h3>
+    <ol>
+      <li><strong>Visual Inspiration at Your Fingertips:</strong> Image Explorer transcends traditional text-based searches. It allows you to dive into a world of inspiration through visuals. Whether you're a content creator, designer, or someone seeking creative ideas, Image Explorer is your go-to source for sparking imagination.</li>
+      <li><strong>Efficient and Time-Saving:</strong> In a fast-paced digital landscape, time is of the essence. Image Explorer's speedy search and loading capabilities ensure that you spend less time waiting and more time exploring. The tool's efficiency makes it a valuable asset for those who prioritize productivity.</li>
+      <li><strong>Tailored for Content Creators:</strong> Content creators often need a diverse range of visuals for their projects. Image Explorer, with its extensive database, becomes an indispensable ally for bloggers, social media influencers, and website developers. Finding the perfect image to complement your content has never been easier.</li>
+      <li><strong>Educational Exploration:</strong> For students, educators, and lifelong learners, Image Explorer opens up avenues for educational exploration. Visual aids are known to enhance learning, and this tool facilitates the discovery of relevant images for presentations, research, and educational materials.</li>
+      <li><strong>No Result? No Problem!:</strong> If your search yields no results, Image Explorer doesn't leave you empty-handed. Instead, it suggests alternative keywords or topics to help you refine your search and discover the visuals you're looking for.</li>
+    </ol>
+
+    <h3>Who Can Benefit from Image Explorer?</h3>
+    <ul>
+      <li><strong>Creatives and Designers:</strong> Graphic designers, artists, and creatives seeking inspiration for their next project.</li>
+      <li><strong>Content Creators:</strong> Bloggers, vloggers, and social media enthusiasts looking for captivating visuals to enhance their content.</li>
+      <li><strong>Students and Educators:</strong> Researchers, students, and educators searching for educational and illustrative images for presentations and materials.</li>
+      <li><strong>Tech Enthusiasts:</strong> Individuals exploring the latest in technology, gadgets, and innovations.</li>
+      <li><strong>Nature Lovers:</strong> Those who find solace in the beauty of nature and want to explore stunning landscapes and wildlife.</li>
+    </ul>
+
+    <h3>Conclusion: Unleash Your Imagination with Image Explorer</h3>
+    <p>In the era of visual communication, Image Explorer emerges as a beacon, simplifying the way we interact with and discover the world through images. Whether you seek inspiration, efficiency, or educational resources, this tool adapts to your needs, providing a visually immersive experience.</p>
+
+    <p>As you navigate the digital landscape, let Image Explorer be your trusted companion, opening doors to a world of creativity, information, and visual delight. Embrace the future of online exploration with Image Explorer, where every click leads to a new realm of possibilities.</p>
+
+    <p>Explore. Imagine. Discover. Image Explorer is your key to a visually enriched online experience.</p>
+  </div>
+
+  <script>
+    const apiKey = "EJV80IoFOfyp4hJrHmqS4GcxIVilPxMreXM4vqa8cwUnqPuYJR6qYOFe";
+    let currentPage = 1;
+
+    async function searchImages() {
+      var userInput = document.getElementById('searchInput').value;
+      currentPage = 1;
+
+      try {
+        var searchResults = await fetchSearchResults(userInput, currentPage);
+
+        var imageContainer = document.getElementById('imageContainer');
+        var noResultMessage = document.getElementById('noResultMessage');
+        var noMoreResultsMessage = document.getElementById('noMoreResultsMessage');
+        var loadMoreButton = document.getElementById('loadMoreButton');
+
+        if (searchResults.length > 0) {
+          document.querySelector('h1').style.color = '#e44d26'; // Set heading color to default
+          noResultMessage.innerHTML = ''; // Clear previous no result message
+          displayImages(searchResults);
+          loadMoreButton.style.display = 'block'; // Show Load More button
+          noMoreResultsMessage.innerHTML = ''; // Clear no more results message
+        } else {
+          document.querySelector('h1').style.color = '#000'; // Set heading color to black
+          noResultMessage.innerHTML = 'No results found for the keyword. Please try another keyword.'; // Display no result message
+          loadMoreButton.style.display = 'none'; // Hide Load More button
+          noMoreResultsMessage.innerHTML = ''; // Clear no more results message
+        }
+      } catch (error) {
+        console.error('Error fetching search results:', error);
+      }
+    }
+
+    async function loadMoreImages() {
+      currentPage++;
+      var userInput = document.getElementById('searchInput').value;
+
+      try {
+        var searchResults = await fetchSearchResults(userInput, currentPage);
+
+        var imageContainer = document.getElementById('imageContainer');
+        displayImages(searchResults);
+      } catch (error) {
+        console.error('Error fetching additional search results:', error);
+      }
+    }
+
+    async function fetchSearchResults(query, page) {
+      var apiUrl = `https://api.pexels.com/v1/search?query=${query}&per_page=12&page=${page}`;
+
+      try {
+        var response = await fetch(apiUrl, {
+          headers: {
+            'Authorization': apiKey
+          }
+        });
+
+        var data = await response.json();
+        return data.photos.map(photo => photo.src.medium); // Use a smaller image size for initial rendering
+      } catch (error) {
+        throw new Error('Failed to fetch search results');
+      }
+    }
+
+    function displayImages(images) {
+      var imageContainer = document.getElementById('imageContainer');
+      var noResultMessage = document.getElementById('noResultMessage');
+      var noMoreResultsMessage = document.getElementById('noMoreResultsMessage');
+
+      images.forEach(function(imageUrl) {
+        var imgElement = document.createElement('img');
+        imgElement.src = '';
+        imgElement.dataset.src = imageUrl;
+        imgElement.classList.add('search-result-img');
+        imgElement.addEventListener('click', () => openImage(imageUrl));
+        imageContainer.appendChild(imgElement);
+      });
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      const lazyImages = document.querySelectorAll('.search-result-img');
+      lazyImages.forEach(img => {
+        observer.observe(img);
+      });
+
+      // If no images are found, hide the Load More button
+      document.getElementById('loadMoreButton').style.display = images.length === 0 ? 'none' : 'block';
+
+      // If no more results are available, display a message
+      if (images.length === 0 && currentPage > 1) {
+        noMoreResultsMessage.innerHTML = 'No more results available.';
+      } else {
+        noMoreResultsMessage.innerHTML = '';
+      }
+
+      // If there are images, clear the no result message
+      if (images.length > 0) {
+        noResultMessage.innerHTML = '';
+      }
+    }
+
+    function openImage(imageUrl) {
+      window.open(imageUrl, '_blank');
+    }
+  </script>
+
+</body>
+</html>
